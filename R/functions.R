@@ -1,3 +1,12 @@
+#' supplystack Constructor
+#'
+#' Create a supplystack object
+#' @param p Numeric vector. Represents cost or price for each producer.
+#' @param q Numeric vector. Represents quantity for each producer.
+#' @param nms Character vector (optional). Producer names for visualization.
+#' @export
+#' @examples
+#' supplystack(p=c(100, 50, 75), q=rep(50, 3), nms=c('A','B','C'))
 supplystack <- function(p, q, nms=NULL) {
 
   if (length(p) != length(q)) {
