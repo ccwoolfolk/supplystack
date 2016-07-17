@@ -1,0 +1,10 @@
+Package: supplystack
+Type: Package
+Title: Supply Stack Creation and Plotting
+Version: 0.1
+Date: 2016-07-17
+Author: Casey Woolfolk
+Maintainer: Casey Woolfolk <ccwoolfolk@gmail.com>
+Description: supplystack provides a class for creating, modifying, and displaying supply stacks, also known as cost curves.
+License: What license is it under?
+LazyData: TRUE
