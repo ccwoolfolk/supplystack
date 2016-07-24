@@ -26,6 +26,8 @@ supplystack <- function(p, q, nms=NULL) {
   newStack <- list(p=p[idx],
                    q=q[idx],
                    nms=nms)
+  
+  class(newStack) <- "supplystack"
 
   return(newStack)
 
