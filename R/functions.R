@@ -32,3 +32,19 @@ supplystack <- function(p, q, nms=NULL) {
   return(newStack)
 
 }
+
+
+#' supplystack Addition
+#'
+#' Combine two supplystack objects
+#' @param a supplystack object.
+#' @param b supplystack object.
+#' @export
+#' @examples
+#' supplystack(p=c(100, 50), q=rep(50, 2)) + supplystack(p=c(75, 150), q=rep(20, 2))
+"+.supplystack" <- function(a, b) {
+  c <- supplystack(p=c(a$p, b$p),
+                   q=c(a$q, b$q),
+                   if(!is.null(a$nms) && !is.null(b$nms)) nms=c(a$nms, b$nms))
+  return(c)
+}
