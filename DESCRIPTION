@@ -7,7 +7,8 @@ Author: Casey Woolfolk
 Maintainer: Casey Woolfolk <ccwoolfolk@gmail.com>
 Description: supplystack provides a class for creating, modifying, and
     displaying supply stacks, also known as cost curves.
-License: What license is it under?
+License: MIT
 LazyData: TRUE
-RoxygenNote: 5.0.1.9000
-Suggests: testthat
+RoxygenNote: 5.0.1
+Suggests:
+    testthat
