@@ -49,15 +49,15 @@ supplystack <- function(p, q, nms=NULL) {
 #' @param p Numeric matrix. Represents cost or price for each producer. Column values belong to a single producer; rows represent different cost components.
 #' @param q Numeric vector. Represents quantity for each producer.
 #' @param nms Character vector (optional). Producer names for visualization.
-#' @examples
-#' supplystack
 ssmulti <- function(p, q, nms=NULL) {
   stopifnot(is.matrix(p))
   
   total_p <- colSums(p)
-  stack <- supplystack(p=total_p, q=q, nms=nms)
+  idx <- order(total_p)
+  
+  stack <- supplystack(p=total_p[idx], q=q[idx], nms=nms[idx])
   class(stack) <- append("ssmulti", class(stack))
-  stack[["components"]] <- p
+  stack[["components"]] <- p[ ,idx]
   return(stack)
   
 }
@@ -76,3 +76,12 @@ ssmulti <- function(p, q, nms=NULL) {
                    if(!is.null(a$nms) && !is.null(b$nms)) nms=c(a$nms, b$nms))
   return(c)
 }
+
+#' ssmulti Addition
+#'
+#' Combine two multi component supplystack objects
+#' @param a ssmulti object.
+#' @param b ssmulti object.
+"+.ssmulti" <- function(a, b) {
+  
+})
