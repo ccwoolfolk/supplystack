@@ -10,5 +10,6 @@ Description: supplystack provides a class for creating, modifying, and
 License: MIT
 LazyData: TRUE
 RoxygenNote: 5.0.1
-Suggests:
+Suggests: 
     testthat
+Imports: RColorBrewer
