@@ -34,7 +34,7 @@ plot.supplystack <- function(x, plot_names=TRUE, names_cutoff=0.10, rect_col=NUL
   if ("ssmulti" %in% class(x)) {
     ncosts <- nrow(x$components)
     nsuppliers <- ncol(x$components)
-    if (is.null(rect_col)) rect_col <- rev(RColorBrewer::brewer.pal(ncosts, "Blues"))
+    if (is.null(rect_col)) rect_col <- rev(RColorBrewer::brewer.pal(max(3, ncosts), "Blues"))[1:ncosts]
     
     rect(xleft=rep(xleft, each=ncosts),
          xright=rep(xright, each=ncosts),
