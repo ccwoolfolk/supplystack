@@ -18,6 +18,9 @@ supplystack <- function(p, q, nms=NULL) {
     stop(paste("'p' length of", length(p),
                " vs. 'nms' length of", length(nms)))
   }
+  
+  if (any(is.na(p)) || any(is.na(q)))
+    stop("NAs not allowed in p or q arguments")
 
   idx <- order(p, decreasing=FALSE)
 

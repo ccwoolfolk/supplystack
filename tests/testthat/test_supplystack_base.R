@@ -56,3 +56,8 @@ test_that("Adding stack with names to one without results in no names", {
   expect_equal(ss_1 + ss_2, ss_comb)
   
 })
+
+test_that("Input NAs throw errors", {
+  expect_error(supplystack(p=c(1, NA, 2), q=1:3))
+  expect_error(supplystack(p=1:3, q=c(1, NA, 2)))
+})
