@@ -84,4 +84,17 @@ ssmulti <- function(p, q, nms=NULL) {
 #' @param b ssmulti object.
 "+.ssmulti" <- function(a, b) {
   
-})
+  if (is.null(a$components) || is.null(b$components))
+    stop("Inputs must both be multi cost component stacks")
+  
+  if (!identical(nrow(a$components), nrow(b$components)))
+    stop("Inputs must both have identical number of cost components")
+  
+  if (!identical(rownames(a$components), rownames(b$components)))
+    stop("Cannot add cost components with different names")
+  
+  c <- supplystack(p=cbind(a$components, b$components),
+                   q=c(a$q, b$q),
+                   if(!is.null(a$nms) && !is.null(b$nms)) nms=c(a$nms, b$nms))
+  return(c)
+}
