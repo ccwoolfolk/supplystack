@@ -5,7 +5,7 @@
 \title{plot.supplystack}
 \usage{
 \method{plot}{supplystack}(x, plot_names = TRUE, names_cutoff = 0.1,
-  rect_col = "lightblue", rect_border = "white", ...)
+  rect_col = NULL, rect_border = "white", ...)
 }
 \arguments{
 \item{x}{supplystack object to be plotted.}
@@ -14,7 +14,7 @@
 
 \item{names_cutoff}{Optional numeric. Cutoff for plotting of names. Suppliers with total Q less than this proportion of the total will not be plotted. Defaults to 0.10.}
 
-\item{rect_col}{Optional character. Color of shaded rectangles or NULL for none.}
+\item{rect_col}{Optional character. Color of shaded rectangles or NULL for none. Should be one value for basic supply stack or a vector for multi cost stacks.}
 
 \item{rect_border}{Optional character. Color of rectangle borders or NA for none.}
 

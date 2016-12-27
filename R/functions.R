@@ -1,12 +1,13 @@
 #' supplystack Constructor
 #'
 #' Create a supplystack object
-#' @param p Numeric vector. Represents cost or price for each producer.
+#' @param p Numeric vector. Represents cost or price for each producer. Alternatively, a matrix in which column values belong to a single producer; rows represent different cost components.
 #' @param q Numeric vector. Represents quantity for each producer.
 #' @param nms Character vector (optional). Producer names for visualization.
 #' @export
 #' @examples
 #' supplystack(p=c(100, 50, 75), q=rep(50, 3), nms=c('A','B','C'))
+#' supplystack(p=matrix(c(5, 10, 15, 20), 2, 2, dimnames=list(c("Cost1", "Cost2"))), q=c(10, 15))
 supplystack <- function(p, q, nms=NULL) {
 
   # Send to alternative constructor if multiple cost components
@@ -14,15 +15,13 @@ supplystack <- function(p, q, nms=NULL) {
     return(ssmulti(p=p, q=q, nms=nms))
   
   # Input validation
-  if (length(p) != length(q)) {
+  if (length(p) != length(q))
     stop(paste("'p' length of", length(p),
                " vs. 'q' length of", length(q)))
-  }
 
-  if (!is.null(nms) && length(nms) != length(p)) {
+  if (!is.null(nms) && length(nms) != length(p))
     stop(paste("'p' length of", length(p),
                " vs. 'nms' length of", length(nms)))
-  }
   
   if (any(is.na(p)) || any(is.na(q)))
     stop("NAs not allowed in p or q arguments")
