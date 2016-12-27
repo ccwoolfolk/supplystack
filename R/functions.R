@@ -9,6 +9,11 @@
 #' supplystack(p=c(100, 50, 75), q=rep(50, 3), nms=c('A','B','C'))
 supplystack <- function(p, q, nms=NULL) {
 
+  # Send to alternative constructor if multiple cost components
+  if (is.matrix(p))
+    return(ssmulti(p=p, q=q, nms=nms))
+  
+  # Input validation
   if (length(p) != length(q)) {
     stop(paste("'p' length of", length(p),
                " vs. 'q' length of", length(q)))
@@ -22,6 +27,7 @@ supplystack <- function(p, q, nms=NULL) {
   if (any(is.na(p)) || any(is.na(q)))
     stop("NAs not allowed in p or q arguments")
 
+  # Create supplystack object
   idx <- order(p, decreasing=FALSE)
 
   if (!is.null(nms)) nms <- nms[idx]
@@ -36,6 +42,25 @@ supplystack <- function(p, q, nms=NULL) {
 
 }
 
+
+#' ssmulti Constructor
+#'
+#' Create a supplystack object with multiple cost components
+#' @param p Numeric matrix. Represents cost or price for each producer. Column values belong to a single producer; rows represent different cost components.
+#' @param q Numeric vector. Represents quantity for each producer.
+#' @param nms Character vector (optional). Producer names for visualization.
+#' @examples
+#' supplystack
+ssmulti <- function(p, q, nms=NULL) {
+  stopifnot(is.matrix(p))
+  
+  total_p <- colSums(p)
+  stack <- supplystack(p=total_p, q=q, nms=nms)
+  class(stack) <- append("ssmulti", class(stack))
+  stack[["components"]] <- p
+  return(stack)
+  
+}
 
 #' supplystack Addition
 #'
